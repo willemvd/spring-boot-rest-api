@@ -1,13 +1,25 @@
 package nl.ocs.masterclass.spring.boot.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 import java.util.UUID;
 
-public final class User {
-    private final UUID id;
-    private final @NotBlank String name;
-    private final @NotBlank String password;
+@Entity(name = "users")
+public class User {
+    @Id
+    @GeneratedValue
+    @Column(length = 36)
+    private UUID id;
+    private @NotBlank String name;
+    private @NotBlank String password;
+
+    public User() {
+
+    }
 
     public User(UUID id,
                 @NotBlank String name,

@@ -1,32 +1,29 @@
 package nl.ocs.masterclass.spring.boot.service;
 
 import nl.ocs.masterclass.spring.boot.model.User;
+import nl.ocs.masterclass.spring.boot.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class UserService {
 
-    private final Map<String, User> users;
+    private final UserRepository userRepository;
 
-    public UserService() {
-        users = new ConcurrentHashMap<>();
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public User addUser(User user) {
-        users.put(user.getName(), user);
-        return user;
+        return userRepository.save(user);
     }
 
     public Optional<User> findUser(String name) {
-        return Optional.ofNullable(users.get(name));
+        return userRepository.findByName(name);
     }
 
-    public Collection<User> getAllUsers() {
-        return users.values();
+    public Iterable<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

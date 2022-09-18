@@ -17,7 +17,6 @@ import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Optional;
 
 import static nl.ocs.masterclass.spring.boot.TestUtils.setupUser;
@@ -73,7 +72,7 @@ class UserApiTest {
         final User user2 = setupUser("user2", "p2");
         when(userService.getAllUsers()).thenReturn(Arrays.asList(user1, user2));
 
-        final Collection<User> users = userApi.getUsers();
+        final Iterable<User> users = userApi.getUsers();
 
         assertThat(users).isNotNull();
         assertThat(users).isNotEmpty();

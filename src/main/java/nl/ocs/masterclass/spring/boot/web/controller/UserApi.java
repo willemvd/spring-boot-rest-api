@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.net.URI;
-import java.util.Collection;
 
 @RestController
 @RequestMapping("/user")
@@ -48,7 +47,7 @@ public class UserApi {
     }
 
     @GetMapping
-    public Collection<User> getUsers() {
+    public Iterable<User> getUsers() {
         LOG.info("Return all users");
         return userService.getAllUsers();
     }
