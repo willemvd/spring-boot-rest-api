@@ -6,6 +6,7 @@ import nl.ocs.masterclass.spring.boot.model.User;
 import nl.ocs.masterclass.spring.boot.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jdbc.EmbeddedDataSourceConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
@@ -25,7 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(controllers = UserApi.class)
-@Import(SecurityConfig.class) // required to load our security configuration instead of the default implementation
+@Import({SecurityConfig.class, EmbeddedDataSourceConfiguration.class}) // required to load our security configuration instead of the default implementation
 public class UserIntegrationTest {
 
     @Autowired

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 import java.util.UUID;
 
-@Entity(name = "users")
+@Entity(name = "application_users")
 public class User {
     @Id
     @GeneratedValue
